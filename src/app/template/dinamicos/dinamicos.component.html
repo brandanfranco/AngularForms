@@ -1,0 +1,95 @@
+<h2>Template:Dinamics</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="saveName()" #miFormulario="ngForm">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Name </label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            [ngModel]="person.name"
+            name="name"
+            required
+            minlength="1"
+          />
+          <span
+            class="form-text text-danger"
+            *ngIf="
+              miFormulario.controls['name']?.invalid &&
+              miFormulario.controls['name']?.touched
+            "
+          >
+            required
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Add </label>
+        <div class="col-sm-9">
+          <div class="input-group">
+            <input
+              [(ngModel)]="newGame"
+              type="text"
+              class="form-control"
+              placeholder="Add new item"
+              (keyup.enter)="addGame()"
+              name="newGame"
+            />
+            <button
+              (click)="addGame()"
+              class="btn btn-outline-primary"
+              type="button"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Favourites </label>
+        <div class="col-sm-9">
+          <div
+            class="input-group mb-2"
+            *ngFor="let item of person.favourites; let i = index"
+          >
+            <input
+              [(ngModel)]="item.name"
+              name="game {{ i }}"
+              type="text"
+              class="form-control"
+              required
+            />
+            <button
+              (click)="deleteItem(i)"
+              class="btn btn-outline-danger"
+              type="button"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            [disabled]="miFormulario.invalid"
+            class="btn btn-primary float-end"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <span>Form Data</span>
+    <pre>{{ person | json }}</pre>
+  </div>
+</div>

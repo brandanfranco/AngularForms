@@ -1,0 +1,27 @@
+<h1>Template</h1>
+<hr />
+
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let item of templateMenu"
+    [routerLink]="[item.route]"
+    routerLinkActive="active"
+  >
+    {{ item.text }}
+  </li>
+</ul>
+
+<h1 class="mt-4">Reactive</h1>
+<hr />
+
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let item of templateMenuReactive"
+    [routerLink]="[item.route]"
+    routerLinkActive="active"
+  >
+    {{ item.text }}
+  </li>
+</ul>

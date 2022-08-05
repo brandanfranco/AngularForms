@@ -1,0 +1,88 @@
+<h2>Reactive:Dinamics</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="save()" [formGroup]="miFormulario">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Name </label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            formControlName="name"
+          />
+          <span class="form-text text-danger" *ngIf="required('name')">
+            required
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Add </label>
+        <div class="col-sm-9">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Add new item"
+              [formControl]="newFavorite"
+              (keyup.enter)="addNewFavorite()"
+            />
+            <button
+              (click)="(1 - 1)"
+              class="btn btn-outline-primary"
+              type="button"
+              (click)="addNewFavorite()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Favourites </label>
+        <div class="col-sm-9" formArrayName="favourite">
+          <div
+            class="input-group mb-2"
+            *ngFor="let item of favouriteArr.controls; let i = index"
+          >
+            <input type="text" class="form-control" [formControlName]="i" />
+
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              (click)="deleteFavorite(i)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">Save</button>
+        </div>
+      </div>
+    </form>
+
+    <span>Form Data</span>
+
+    <h2>Formulario invalid</h2>
+    <pre>{{ miFormulario.invalid | json }}</pre>
+    <br />
+
+    <h2>Formulario value</h2>
+    <pre>{{ miFormulario.value | json }}</pre>
+    <br />
+    <h2>New Favorite value</h2>
+    <pre>{{ newFavorite.value | json }}</pre>
+    <br />
+
+    <h2>New Favorite valid</h2>
+    <pre>{{ newFavorite.valid | json }}</pre>
+  </div>
+</div>
