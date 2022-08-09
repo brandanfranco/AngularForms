@@ -1,0 +1,124 @@
+<h2>Validaciones Reactivas</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="submit()">
+      <!--Name-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="User Name"
+            formControlName="name"
+          />
+
+          <span class="text-danger" *ngIf="noValidate('name')">
+            format name and last name with space
+          </span>
+        </div>
+      </div>
+
+      <!--Email-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <span class="text-danger" *ngIf="noValidate('email')">
+            {{ errorMsg }}
+          </span>
+        </div>
+      </div>
+
+      <!--UserName-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UserName</label>
+
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="UserName"
+            formControlName="username"
+          />
+
+          <span class="text-danger" *ngIf="noValidate('username')">
+            Cannot be strider
+          </span>
+        </div>
+      </div>
+
+      <!--UPassword-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Password</label>
+
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <span class="text-danger" *ngIf="noValidate('password')">
+            Min 6 caracteres
+          </span>
+        </div>
+      </div>
+
+      <!-- Confirm Password-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Confirm Password</label>
+
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password2"
+          />
+
+          <span class="text-danger" *ngIf="noValidate('password2')">
+            Passwords not match
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-primary float-end"
+            type="submit"
+            [disabled]="myForm.pending"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h2>Form Valid {{ myForm.valid }}</h2>
+<h2>Form status {{ myForm.status }}</h2>
+<h2>Form pending {{ myForm.pending }}</h2>
+
+<h2>Errors {{ myForm.errors | json }}</h2>
+
+<pre>Nombre {{ myForm.controls["name"].errors | json }}</pre>
+
+<pre>email {{ myForm.controls["email"].errors | json }}</pre>
+
+<pre>username {{ myForm.controls["username"].errors | json }}</pre>
+
+<pre>password {{ myForm.controls["password"].errors | json }}</pre>
+
+<pre>password2 {{ myForm.controls["password2"].errors | json }}</pre>

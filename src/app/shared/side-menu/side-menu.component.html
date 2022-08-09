@@ -25,3 +25,17 @@
     {{ item.text }}
   </li>
 </ul>
+
+<h1 class="mt-4">Validaciones</h1>
+<hr />
+
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let item of templateMenuValidaciones"
+    [routerLink]="[item.route]"
+    routerLinkActive="active"
+  >
+    {{ item.text }}
+  </li>
+</ul>
